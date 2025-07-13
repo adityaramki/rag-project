@@ -17,20 +17,20 @@ chroma_client = chromadb.PersistentClient(path=CHROMA_PATH)
 collection = chroma_client.get_or_create_collection(name="my_collection")
 
 
-user_query = input("What do you want to know about growing vegetables?\n\n")
+user_query = input("What do you want to know about the Broad Building at MSU?\n\n")
 
-results = collection.query(
+results = collection.query( # find 3 relevant vector embeddings when compared to user query embedding
     query_texts=[user_query],
     n_results=3
 )
 
-#print(results['documents'])
+print(results['documents'])
 #print(results['metadatas'])
 
 client = OpenAI()
-
+'''
 system_prompt = """
-You are a helpful assistant. You answer questions about growing vegetables in Florida. 
+You are a helpful AI assistant. You answer questions about Michigan State University's Broad Building. 
 But you only answer based on knowledge I'm providing you. You don't use your internal 
 knowledge and you don't make things up.
 If you don't know the answer, just say: I don't know
@@ -52,3 +52,5 @@ response = client.chat.completions.create(
 print("\n\n---------------------\n\n")
 
 print(response.choices[0].message.content)
+
+'''
