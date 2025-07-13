@@ -30,7 +30,7 @@ results = collection.query( # find 3 relevant vector embeddings when compared to
 )
 
 #print(results['embeddings'])
-print(results['documents'])
+#print(results['documents'])
 #print(results['metadatas'])
 '''
 client = OpenAI()
