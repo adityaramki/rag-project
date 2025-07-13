@@ -28,7 +28,7 @@ print(results['documents'])
 #print(results['metadatas'])
 
 client = OpenAI()
-'''
+
 system_prompt = """
 You are a helpful AI assistant. You answer questions about Michigan State University's Broad Building. 
 But you only answer based on knowledge I'm providing you. You don't use your internal 
@@ -53,4 +53,4 @@ print("\n\n---------------------\n\n")
 
 print(response.choices[0].message.content)
 
-'''
+
