@@ -5,6 +5,10 @@ import chromadb
 from openai import OpenAI
 from dotenv import load_dotenv
 
+from chromadb.utils import embedding_functions
+
+default_ef = embedding_functions.DefaultEmbeddingFunction()
+
 load_dotenv()
 
 # setting the environment
@@ -14,19 +18,21 @@ CHROMA_PATH = r"chroma_db"
 
 chroma_client = chromadb.PersistentClient(path=CHROMA_PATH)
 
-collection = chroma_client.get_or_create_collection(name="my_collection")
+collection = chroma_client.get_or_create_collection(name="my_collection", embedding_function= default_ef)
 
 
-user_query = input("What do you want to know about the Broad Building at MSU?\n\n")
+user_query = input("What do you want to know about the Broad Building at MSU?\n\n") 
 
 results = collection.query( # find 3 relevant vector embeddings when compared to user query embedding
     query_texts=[user_query],
-    n_results=3
+    n_results=3,
+    include=['documents', 'embeddings', 'metadatas']
 )
 
+#print(results['embeddings'])
 print(results['documents'])
 #print(results['metadatas'])
-
+'''
 client = OpenAI()
 
 system_prompt = """
@@ -53,4 +59,4 @@ print("\n\n---------------------\n\n")
 
 print(response.choices[0].message.content)
 
-
+'''

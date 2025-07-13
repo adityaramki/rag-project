@@ -2,12 +2,16 @@ from langchain_community.document_loaders import PyPDFDirectoryLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import chromadb
 
+from chromadb.utils import embedding_functions
+
+default_ef = embedding_functions.DefaultEmbeddingFunction()
+
 DATA_PATH = r"data" 
 CHROMA_PATH = r"chroma_db"
 
 chroma_client = chromadb.PersistentClient(path=CHROMA_PATH)
 
-collection = chroma_client.get_or_create_collection(name="my_collection")
+collection = chroma_client.get_or_create_collection(name="my_collection", embedding_function=default_ef)
 
 loader = PyPDFDirectoryLoader(DATA_PATH)
 
