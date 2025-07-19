@@ -40,8 +40,8 @@ msu-broad-rag/
 ### 1. Clone and install dependencies
 
 ```bash
-git clone https://github.com/yourusername/msu-broad-chatbot.git
-cd msu-broad-chatbot
+git clone https://github.com/yourusername/msu-broad-rag.git
+cd msu-broad-rag
 pip install -r requirements.txt
 ```
 
